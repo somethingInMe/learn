@@ -10,14 +10,14 @@
   };
   
   
-  $container['response'] = function ($container) {
-  return new \Symfony\Component\HttpFoundation\Response();
-  };
+  $response = new \Symfony\Component\HttpFoundation\Response();
+  
 
   $cookie = new \Symfony\Component\HttpFoundation\Cookie('foo', 'bar');
-  $container['response']->headers->setCookie($cookie);
+  $response->headers->setCookie($cookie);
 
-  
+  $response->prepare($container['request']);
+  $response->send();
   
   
   
